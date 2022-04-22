@@ -18,8 +18,10 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 suspend fun Application.configureRealtimeUpdate(service_project: ProjectService) {
+
     coroutineScope {
         var projects: List<Project_RealtimeUpdate_Res_domain>? = null
+        //project 도메인의 모드가 true인지 스캔한다
         launch(Dispatchers.IO) {
             println("값을 가져옴")
             while (isActive) {
@@ -31,6 +33,7 @@ suspend fun Application.configureRealtimeUpdate(service_project: ProjectService)
                 delay(1000L)
             }
         }
+        //project 도메인의 모드가 true인 경우 해당 하위 가상 센서의 값을 변경한다
         launch(Dispatchers.IO) {
             while (isActive) {
                 try {

@@ -98,14 +98,19 @@ class MqttService {
         )
     }
 
-    suspend fun httpRequest(body: Project_Patch_Req, datas: MutableList<Project_Mqtt_Res_domain>) {
+    suspend fun httpRequest(
+        body: Project_Patch_Req,
+        datas: MutableList<Project_Mqtt_Res_domain>,
+        ip: String,
+        port: String
+    ) {
         //http://192.168.0.74:9002/mqtt?id={id}&mode=true or false
         //http://localhost:9001/test?id=1&mode=true
         val client = HttpClient(CIO)
         var response: HttpResponse? = null;
         try {
             val jsonData = Gson().toJsonTree(datas, object : TypeToken<MutableList<Project_Mqtt_Res_domain>>() {}.type)
-            response = client.post("http://192.168.0.74:8080/mqtt") {
+            response = client.post("http://${ip}:${port}/mqtt") {
                 this.body = TextContent(
                     text = jsonData.asJsonArray.toString(),
                     contentType = ContentType.Application.Json,

@@ -15,7 +15,7 @@ import kotlinx.coroutines.*
 import kr.co.aerix.model.Project_Patch_Req
 import kr.co.aerix.service.MqttService
 
-fun Routing.project(service: ProjectService, serviceRequest: MqttService) {
+fun Routing.project(service: ProjectService, serviceRequest: MqttService, ip: String, port: String) {
     route("/test") {
         get {
             val id =
@@ -56,7 +56,12 @@ fun Routing.project(service: ProjectService, serviceRequest: MqttService) {
                         if (httpStatusCode == HttpStatusCode.OK) {
                             var datas = serviceRequest.getAllSchemeData().toMutableList()
                             if (!datas.isEmpty()) {
-                                serviceRequest.httpRequest(body, datas)    // <- MQTT Module 에게 mode=true,false 정보를 전달
+                                serviceRequest.httpRequest(
+                                    body,
+                                    datas,
+                                    ip,
+                                    port
+                                )    // <- MQTT Module 에게 mode=true,false 정보를 전달
                             }
                         }
                     }

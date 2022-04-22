@@ -101,8 +101,9 @@ Accept: application/json
 
 ###
 
-GET http://localhost:9001/project
+GET http://112.175.232.200:9001/project
 Accept: application/json
+
 
 ###
 
@@ -151,7 +152,7 @@ Accept: application/json
 
 ###
 
-GET http://localhost:9001/sensor
+GET http://112.175.232.200:9001/sensor
 Accept: application/json
 
 ###
@@ -180,7 +181,7 @@ Accept: application/json
 
 ###
 
-GET http://localhost:9001/mqtt/packet
+GET http://112.175.232.200:9001/mqtt/packet
 Accept: application/json
 
 ###
@@ -190,7 +191,7 @@ Accept: application/json
 
 ###
 
-GET http://localhost:9001/mqtt/packet
+POST http://112.175.232.200:3001/mqtt
 Accept: application/json
 
 ###
